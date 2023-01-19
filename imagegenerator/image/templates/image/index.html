@@ -1,0 +1,29 @@
+{% extends 'image/base.html' %}
+{% block content %}
+        <h3 class="text-center mt-5 fw-bold text-white">AI Image Generator</h3>
+        <div class="row mt-5">
+            <div class="col-md-6 mx-auto">
+                <!-- Form -->
+                <form method='POST' action="" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-floating mb-3">
+                        <input type="text" name="prompt"  id="floatingInput" class="form-control" placeholder="Enter your prompt">
+                        <label for="floatingInput">Prompt</label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-sm" id="generate-btn" onclick="generateImage()">Generate</button>
+                </form>
+                <!-- Form End -->
+
+                <!-- Image -->
+                {% if image_url %}
+                    <div id="progress-bar"></div>
+
+                    <div class="text-center mt-5" id="image-container">
+                        <img src="{{ image_url }}" alt="" id="image" width="550px">
+                    </div>
+                {% endif %}
+                <!-- Image End -->
+            </div>
+        </div>
+{% endblock %}
